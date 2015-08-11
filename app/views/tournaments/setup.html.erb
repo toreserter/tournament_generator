@@ -1,0 +1,45 @@
+<h1>Setup Tournament</h1>
+
+<%= form_for(@tournament, url: submit_setup_tournament_path(@tournament), method: :put) do |f| %>
+    <% if @tournament.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@tournament.errors.count, "error") %> prohibited this tournament from being saved:</h2>
+
+          <ul>
+            <% @tournament.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%= f.fields_for :players do |p| %>
+        <div class="row well">
+          <div class="col-md-2 player-section">
+            <div class="form-group">
+              <label>
+              </label>
+              <p>Player <%= p.index + 1 %></p>
+              <div class="clear"></div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group">
+              <%= p.label :name %>
+              <%= p.text_field :name, :class => "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group">
+              <%= p.label :team %>
+              <%= p.text_field :team, :class => "form-control" %>
+            </div>
+          </div>
+        </div>
+    <% end %>
+    <div class="actions">
+      <%= f.submit "Save", :class => "btn btn-default" %>
+    </div>
+<% end %>
+
+

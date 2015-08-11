@@ -1,18 +1,22 @@
 class TournamentsController < ApplicationController
-  before_action :set_tournament, only: [:show, :edit, :update, :destroy]
+  before_action :set_tournament, only: [:show, :edit, :update, :destroy, :setup, :submit_setup]
+  before_action :redirect_to_setup, only: [:show, :edit]
+  before_action :redirect_to_tournament, only: [:edit, :setup]
 
-  # GET /tournaments
-  # GET /tournaments.json
   def index
     @tournaments = Tournament.all
   end
 
-  # GET /tournaments/1
-  # GET /tournaments/1.json
   def show
+    @matches = @tournament.matches
   end
 
-  # GET /tournaments/new
+  def setup
+    redirect_to tournament_path(@tournament) unless @tournament.in_setup?
+
+  end
+
+
   def new
     @tournament = Tournament.new
     if params[:number_of_players]
@@ -22,12 +26,9 @@ class TournamentsController < ApplicationController
     end
   end
 
-  # GET /tournaments/1/edit
   def edit
   end
 
-  # POST /tournaments
-  # POST /tournaments.json
   def create
     @tournament = Tournament.new(tournament_params)
 
@@ -42,8 +43,6 @@ class TournamentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tournaments/1
-  # PATCH/PUT /tournaments/1.json
   def update
     respond_to do |format|
       if @tournament.update(tournament_params)
@@ -56,8 +55,18 @@ class TournamentsController < ApplicationController
     end
   end
 
-  # DELETE /tournaments/1
-  # DELETE /tournaments/1.json
+  def submit_setup
+    respond_to do |format|
+      if @tournament.update(tournament_params.merge({:state => 'ready'}))
+        format.html { redirect_to @tournament, notice: 'Tournament was successfully updated.' }
+        format.json { render :show, status: :ok, location: @tournament }
+      else
+        format.html { render :edit }
+        format.json { render json: @tournament.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def destroy
     @tournament.destroy
     respond_to do |format|
@@ -67,13 +76,25 @@ class TournamentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tournament
-      @tournament = Tournament.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_tournament
+    @tournament = Tournament.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def tournament_params
-      params.require(:tournament).permit(:name, :tournament_type, players_attributes: [:name, :team])
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def tournament_params
+    params.require(:tournament).permit(:name, :tournament_type, :number_of_players, players_attributes: [:name, :team])
+  end
+
+  def redirect_to_setup
+    if @tournament.in_setup?
+      redirect_to setup_tournament_path(@tournament) and return
     end
+  end
+
+  def redirect_to_tournament
+    if @tournament.ready?
+      redirect_to tournament_path(@tournament) and return
+    end
+  end
 end

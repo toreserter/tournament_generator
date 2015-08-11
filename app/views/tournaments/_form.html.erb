@@ -11,30 +11,30 @@
         </div>
     <% end %>
 
-    <div class="field">
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, :class => "form-control" %>
     </div>
-    <div class="field">
-      <%= f.label :tournament_type %><br>
-      <%= f.select :tournament_type, options_for_select(Tournament::TYPES) %>
+    <div class="form-group">
+      <%= f.label :tournament_type %>
+      <%= f.select :tournament_type, options_for_select(Tournament::TYPES), {}, :class => "form-control" %>
     </div>
-    <div class="field">
-      <%= f.label :number_of_players %><br>
-      <%= f.number_field :number_of_players %>
+    <div class="form-group">
+      <%= f.label :number_of_players %>
+      <%= f.number_field :number_of_players, :class => "form-control" %>
     </div>
 
     <%= f.fields_for :players do |p| %>
-        <div class="field">
-          <%= p.label :name %><br>
-          <%= p.text_field :name %>
+        <div class="form-group">
+          <%= p.label :name %>
+          <%= p.text_field :name, :class => "form-control" %>
         </div>
-        <div class="field">
-          <%= p.label :team %><br>
-          <%= p.text_field :team %>
+        <div class="form-group">
+          <%= p.label :team %>
+          <%= p.text_field :team, :class => "form-control" %>
         </div>
     <% end %>
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit "Save", :class => "btn btn-default" %>
     </div>
 <% end %>

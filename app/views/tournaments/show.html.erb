@@ -1,14 +1,72 @@
-<p id="notice"><%= notice %></p>
+<h2>Matches</h2>
+<hr>
+<% @matches.in_groups_of(2, false) do |group| %>
+    <div class="row">
+      <% group.each do |match| %>
+          <div class="col-md-6">
+            <div class="panel panel-default matches-panel">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="pull-right">
+                      <p><%= match.home_team.team %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @tournament.name %>
-</p>
+                      <p>
+                        <small><%= match.home_team.name %></small>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-md-4 text-center">
+                    <input type="text" class="form-control score-field">
+                    -
+                    <input type="text" class="form-control score-field">
+                  </div>
+                  <div class="col-md-4">
+                    <div class="pull-left">
+                      <p><%= match.away_team.team %></p>
 
-<p>
-  <strong>Tournament type:</strong>
-  <%= @tournament.tournament_type %>
-</p>
+                      <p>
+                        <small><%= match.away_team.name %></small>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+<% end %>
+<h2>Table</h2>
+<hr>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Takım</th>
+    <th>O</th>
+    <th>G</th>
+    <th>B</th>
+    <th>M</th>
+    <th>A</th>
+    <th>Y</th>
+    <th>Av</th>
+    <th>Puan</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <th scope="row">1</th>
+    <td>Takım adı</td>
+    <td>3</td>
+    <td>3</td>
+    <td>3</td>
+    <td>3</td>
+    <td>3</td>
+    <td>3</td>
+    <td>+3</td>
+    <td>3</td>
+  </tr>
 
-<%= link_to 'Edit', edit_tournament_path(@tournament) %> |
-<%= link_to 'Back', tournaments_path %>
+  </tbody>
+</table>

@@ -13,3 +13,35 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+
+autosave_timeout = null
+$(function () {
+    enable_autosave();
+});
+
+
+function enable_autosave(form) {
+    if (form != undefined) {
+        form.find('input, textarea, select').on('change', function () {
+            setInterval
+            auto_submit_this($(this));
+        });
+    }
+
+    else {
+        $('form[data-autosave=true]').find('input, textarea, select').on('change', function () {
+            auto_submit_this($(this));
+        });
+    }
+}
+
+function auto_submit_this(el) {
+    clearTimeout(autosave_timeout);
+    autosave_timeout = setTimeout(function () {
+        SHOW_LOADING = false;
+        if (el.submit())
+            setTimeout(function () {
+                SHOW_LOADING = true;
+            }, 500);
+    }, 750);
+}

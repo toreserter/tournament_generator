@@ -6,31 +6,33 @@
           <div class="col-md-6">
             <div class="panel panel-default matches-panel">
               <div class="panel-body">
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="pull-right">
-                      <p><%= match.home_team.team %></p>
+                <%= form_for match, :url => match_path(match), :remote => true, :method => :put, :data => {:autosave => true} do |f| %>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="pull-right">
+                          <p><%= match.home_team.team %></p>
 
-                      <p>
-                        <small><%= match.home_team.name %></small>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="col-md-4 text-center">
-                    <input type="text" class="form-control score-field">
-                    -
-                    <input type="text" class="form-control score-field">
-                  </div>
-                  <div class="col-md-4">
-                    <div class="pull-left">
-                      <p><%= match.away_team.team %></p>
+                          <p>
+                            <small><%= match.home_team.name %></small>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="col-md-4 text-center">
+                        <%= f.text_field :home_team_score, :class => "form-control score-field" %>
+                        -
+                        <%= f.text_field :away_team_score, :class => "form-control score-field" %>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="pull-left">
+                          <p><%= match.away_team.team %></p>
 
-                      <p>
-                        <small><%= match.away_team.name %></small>
-                      </p>
+                          <p>
+                            <small><%= match.away_team.name %></small>
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                <% end %>
               </div>
             </div>
           </div>

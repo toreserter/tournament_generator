@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :matches
 
-  resources :players
 
   resources :tournaments do
+    resources :matches
+
     member do
       get :setup
       put :submit_setup

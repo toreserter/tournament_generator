@@ -42,11 +42,9 @@ class MatchesController < ApplicationController
   def update
     respond_to do |format|
       if @match.update(match_params)
-        format.html { redirect_to @match, notice: 'Match was successfully updated.' }
-        format.json { render :show, status: :ok, location: @match }
+        format.html { redirect_to get_score_board_tournament_path(@match.tournament), notice: 'Match was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @match.errors, status: :unprocessable_entity }
       end
     end
   end

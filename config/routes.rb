@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     member do
       get :setup
       put :submit_setup
+      get :get_score_board
     end
   end
 

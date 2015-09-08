@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811185650) do
+ActiveRecord::Schema.define(version: 20150908201258) do
 
   create_table "matches", force: :cascade do |t|
     t.integer  "home_team_score", limit: 4
@@ -26,11 +26,18 @@ ActiveRecord::Schema.define(version: 20150811185650) do
   add_index "matches", ["tournament_id"], name: "index_matches_on_tournament_id", using: :btree
 
   create_table "players", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.string   "team",          limit: 255
-    t.integer  "tournament_id", limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",           limit: 255
+    t.string   "team",           limit: 255
+    t.integer  "tournament_id",  limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "played",         limit: 4
+    t.integer  "score",          limit: 4
+    t.integer  "win",            limit: 4
+    t.integer  "draw",           limit: 4
+    t.integer  "loss",           limit: 4
+    t.integer  "goal_scored",    limit: 4
+    t.integer  "goal_conceeded", limit: 4
   end
 
   add_index "players", ["tournament_id"], name: "index_players_on_tournament_id", using: :btree

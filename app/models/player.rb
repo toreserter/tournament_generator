@@ -6,7 +6,7 @@ class Player < ActiveRecord::Base
 
   validates :name, :team, :presence => true
 
-  def get_values
+  def set_values
     h = {played: 0, score: 0, win: 0, loss: 0, draw: 0, goal_scored: 0, goal_conceeded: 0, average: 0}
     home_matches.completed.each do |hm|
       r = self.process_match(hm)
@@ -20,11 +20,11 @@ class Player < ActiveRecord::Base
         h[key] += r[key]
       end
     end
-    return h
+    self.update(h)
   end
 
   def self.order_players
-
+    order("score desc, average desc, goal_scored desc")
   end
 
   def process_match(match)
@@ -51,6 +51,6 @@ class Player < ActiveRecord::Base
       score = 0
       loss = 1
     end
-    {played: 1, score: score, win: win, draw: 0, loss: loss, goal_scored: team_goal_scored, goal_conceeded: team_goal_conceeded, average: average}
+    {played: 1, score: score, win: win, draw: draw, loss: loss, goal_scored: team_goal_scored, goal_conceeded: team_goal_conceeded, average: average}
   end
 end

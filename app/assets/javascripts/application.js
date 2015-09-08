@@ -23,7 +23,7 @@ $(function () {
 function enable_autosave(form) {
     if (form != undefined) {
         form.find('input, textarea, select').on('change', function () {
-            setInterval
+
             auto_submit_this($(this));
         });
     }

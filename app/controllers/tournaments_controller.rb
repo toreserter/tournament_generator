@@ -1,5 +1,5 @@
 class TournamentsController < ApplicationController
-  before_action :set_tournament, only: [:show, :edit, :update, :destroy, :setup, :submit_setup]
+  before_action :set_tournament, only: [:show, :edit, :update, :destroy, :setup, :submit_setup, :get_score_board]
   before_action :redirect_to_setup, only: [:show, :edit]
   before_action :redirect_to_tournament, only: [:edit, :setup]
 
@@ -16,6 +16,12 @@ class TournamentsController < ApplicationController
 
   end
 
+  def get_score_board
+    @players = @tournament.players.order_players
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def new
     @tournament = Tournament.new

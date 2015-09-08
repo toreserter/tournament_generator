@@ -5,6 +5,10 @@ class Match < ActiveRecord::Base
 
   validate :same_team_validation
 
+  def self.completed
+    where("home_team_score IS NOT NULL AND away_team_score IS NOT NULL")
+  end
+
   private
 
   def same_team_validation

@@ -13,7 +13,7 @@ class TournamentsController < ApplicationController
 
   def setup
     redirect_to tournament_path(@tournament) unless @tournament.in_setup?
-
+    @players = @tournament.players
   end
 
   def get_score_board
@@ -25,11 +25,11 @@ class TournamentsController < ApplicationController
 
   def new
     @tournament = Tournament.new
-    if params[:number_of_players]
-      params[:number_of_players].to_i.times do
-        @tournament.players.build
-      end
-    end
+    # if params[:number_of_players]
+    #   params[:number_of_players].to_i.times do
+    #     @tournament.players.build
+    #   end
+    # end
   end
 
   def edit
@@ -64,6 +64,7 @@ class TournamentsController < ApplicationController
   def submit_setup
     respond_to do |format|
       if @tournament.update(tournament_params.merge({:state => 'ready'}))
+        @tournament.set_fixture
         format.html { redirect_to @tournament, notice: 'Tournament was successfully updated.' }
         format.json { render :show, status: :ok, location: @tournament }
       else
@@ -89,7 +90,7 @@ class TournamentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def tournament_params
-    params.require(:tournament).permit(:name, :tournament_type, :number_of_players, players_attributes: [:name, :team])
+    params.require(:tournament).permit(:name, :tournament_type, :number_of_players, players_attributes: [:name, :team, :id])
   end
 
   def redirect_to_setup

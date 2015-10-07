@@ -28,6 +28,11 @@ class Tournament < ActiveRecord::Base
       end
     end
   end
+
+  def simulate_all
+    matches.each { |m| m.simulate }
+  end
+
   private
   def create_players
     self.number_of_players.to_i.times do

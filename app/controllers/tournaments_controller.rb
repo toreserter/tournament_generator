@@ -8,19 +8,13 @@ class TournamentsController < ApplicationController
   end
 
   def show
-    @matches = @tournament.matches
+    get_matches
+    get_scores
   end
 
   def setup
     redirect_to tournament_path(@tournament) unless @tournament.in_setup?
     @players = @tournament.players
-  end
-
-  def get_score_board
-    @players = @tournament.players.order_players
-    respond_to do |format|
-      format.js
-    end
   end
 
   def new
@@ -80,6 +74,16 @@ class TournamentsController < ApplicationController
       format.html { redirect_to tournaments_url, notice: 'Tournament was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  protected
+
+  def get_scores
+    @players = @tournament.players.order_players
+  end
+
+  def get_matches
+    @matches = @tournament.matches
   end
 
   private

@@ -8,6 +8,7 @@ class Tournament < ActiveRecord::Base
 
   after_create :create_players
   before_create :set_state
+  validates :name, :tournament_type, :presence => true
 
   def in_setup?
     self.state == "in_setup"

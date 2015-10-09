@@ -3,12 +3,16 @@ class MatchesController < ApplicationController
   before_action :set_match
 
   def update
+    @match.update(match_params)
     respond_to do |format|
-      if @match.update(match_params)
-        format.html { redirect_to get_score_board_tournament_path(@match.tournament), notice: 'Match was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+      format.js { redirect_to tournament_path(@match.tournament), notice: 'Match was successfully updated.' }
+    end
+  end
+
+  def simulate
+    @match.simulate
+    respond_to do |format|
+      format.js { redirect_to tournament_path(@match.tournament), notice: 'Match simulated.' }
     end
   end
 

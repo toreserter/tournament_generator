@@ -4,7 +4,7 @@ class Player < ActiveRecord::Base
   has_many :away_matches, class_name: "Match", foreign_key: "away_team_id"
 
 
-  validates :name, :team, :presence => true
+  validates :name, :presence => true
 
   def set_values
     h = {played: 0, score: 0, win: 0, loss: 0, draw: 0, goal_scored: 0, goal_conceeded: 0, average: 0}

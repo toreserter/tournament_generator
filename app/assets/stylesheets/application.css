@@ -124,6 +124,8 @@ input.away {
 .ajax-load {
     position: relative;
     top: 45%;
+}
 
-
+.navbar {
+    border-radius: 0px !important;
 }

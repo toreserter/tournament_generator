@@ -20,10 +20,12 @@ html {
     position: relative;
     min-height: 100%;
 }
+
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
 }
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -32,7 +34,6 @@ body {
     height: 60px;
     background-color: #f5f5f5;
 }
-
 
 /* Custom page CSS
 -------------------------------------------------- */
@@ -43,6 +44,7 @@ body {
     /*max-width: 680px;*/
     padding: 0 15px;
 }
+
 .container .text-muted {
     margin: 20px 0;
 }
@@ -50,11 +52,57 @@ body {
 .player-section {
     border-right: 2px #000000;
 }
-.score-field {
-    width: 25px !important;
-    display: inline !important;
-    padding: 2px 4px !important;
+
+.team-name {
+    width: 80% !important;
+    text-align: right;
+    border-radius: 0px !important;
 }
-.matches-panel p {
-    margin: 0px;
+
+#matches {
+    width: 350px;
+}
+
+.match-row {
+    padding:5px;
+    border: 1px dotted #ccc;
+    font-size: 17px;
+}
+
+span.home {
+    text-align: right;
+    width: 115px;
+    /*display: block;*/
+    float: left;
+}
+
+span.score {
+    text-align: center;
+    width: 100px;
+    /*display: block;*/
+    float: left;
+}
+
+span.away {
+    text-align: left;
+    width: 115px;
+    /*display: block;*/
+    float: left;
+}
+
+input.home {
+    text-align: right;
+}
+input.away {
+    text-align: left;
+}
+
+.score-field {
+    width: 30px !important;
+    border-bottom-left-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+    /*float: right !important;*/
+}
+
+#score_table {
 }

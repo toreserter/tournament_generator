@@ -1,2 +1,4 @@
 $('#score_table').html('<%= escape_javascript(render partial: "tournaments/score_table", formats: [:html], handlers: [:erb]) %>');
 $('#matches').html('<%= escape_javascript(render partial: "tournaments/matches", formats: [:html], handlers: [:erb]) %>');
+
+enable_autosave();

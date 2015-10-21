@@ -38,10 +38,12 @@ function enable_autosave(form) {
 function auto_submit_this(el) {
     clearTimeout(autosave_timeout);
     autosave_timeout = setTimeout(function () {
-        SHOW_LOADING = false;
+        //SHOW_LOADING = false;
+        loadingContainer.show();
         if (el.submit())
             setTimeout(function () {
-                SHOW_LOADING = true;
+                loadingContainer.hide();
+                //SHOW_LOADING = true;
             }, 500);
-    }, 750);
+    }, 1);
 }

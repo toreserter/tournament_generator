@@ -16,6 +16,7 @@ class Match < ActiveRecord::Base
 
   validate :same_team_validation
   after_update :set_player_datum
+  validates :home_team_score, :away_team_score, numericality: { greater_than_or_equal_to: 0, allow_nil: true}
 
   def self.completed
     where("home_team_score IS NOT NULL AND away_team_score IS NOT NULL")

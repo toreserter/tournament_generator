@@ -4,6 +4,7 @@ class MatchesController < ApplicationController
 
   def update
     @match.update(match_params)
+
     respond_to do |format|
       format.js { redirect_to tournament_path(@match.tournament), notice: 'Match was successfully updated.' }
     end

@@ -1,5 +1,5 @@
 class TournamentsController < ApplicationController
-  before_action :set_tournament, only: [:show, :edit, :update, :destroy, :setup, :submit_setup, :get_score_board]
+  before_action :set_tournament, only: [:show, :edit, :update, :destroy, :setup, :submit_setup]
   before_action :redirect_to_setup, only: [:show, :edit]
   before_action :redirect_to_tournament, only: [:edit, :setup]
 

@@ -6,11 +6,11 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <style type="text/css">
       /*@font-face {*/
-          /*font-family: 'Glyphicons Halflings';*/
-          /*src: url('/assets/fonts/glyphicons-halflings-regular.eot?v=4.3.0');*/
-          /*src: url('/assets/fonts/glyphicons-halflings-regular.eot?#iefix&v=4.3.0') format('embedded-opentype'), url('/assets/fonts/glyphicons-halflings-regular.woff2?v=4.3.0') format('woff2'), url('/assets/fonts/glyphicons-halflings-regular.woff?v=4.3.0') format('woff'), url('/assets/fonts/glyphicons-halflings-regular.ttf?v=4.3.0') format('truetype'), url('/assets/fonts/glyphicons-halflings-regular.svg?v=4.3.0#fontawesomeregular') format('svg');*/
-          /*font-weight: normal;*/
-          /*font-style: normal;*/
+      /*font-family: 'Glyphicons Halflings';*/
+      /*src: url('/assets/fonts/glyphicons-halflings-regular.eot?v=4.3.0');*/
+      /*src: url('/assets/fonts/glyphicons-halflings-regular.eot?#iefix&v=4.3.0') format('embedded-opentype'), url('/assets/fonts/glyphicons-halflings-regular.woff2?v=4.3.0') format('woff2'), url('/assets/fonts/glyphicons-halflings-regular.woff?v=4.3.0') format('woff'), url('/assets/fonts/glyphicons-halflings-regular.ttf?v=4.3.0') format('truetype'), url('/assets/fonts/glyphicons-halflings-regular.svg?v=4.3.0#fontawesomeregular') format('svg');*/
+      /*font-weight: normal;*/
+      /*font-style: normal;*/
       /*}*/
   </style>
   <%= stylesheet_link_tag 'bootstrap.min' %>
@@ -25,9 +25,42 @@
   <%= yield %>
 </div>
 <!--<footer class="footer">-->
-  <!--<div class="container">-->
-    <!--<p class="text-muted">Place sticky footer content here.</p>-->
-  <!--</div>-->
+<!--<div class="container">-->
+<!--<p class="text-muted">Place sticky footer content here.</p>-->
+<!--</div>-->
 <!--</footer>-->
+<script type="text/javascript">
+    var loadingContainer;
+    $(function () {
+        // Toggle loading container when ajax call
+        get_loading_container();
+        loadingContainer.ajaxStart(function (e) {
+            show_loading();
+        });
+        loadingContainer.ajaxStop(function (e) {
+            loadingContainer.hide();
+        });
+    });
+
+    $(document).ready(function () {
+        get_loading_container();
+        loadingContainer.hide();
+    });
+    function get_loading_container() {
+        loadingContainer = $('.loader-big');
+    }
+    function show_loading() {
+        loadingContainer.show();
+    }
+</script>
+<div class="loader-big">
+  <div class="load-content text-center">
+    <i class="icon icon-spinner icon-spin icon-4x"></i>
+    <!--<div class="Limg"><img src="<%#= asset_path("admin/v2/ajax-loader-2.gif") %>"></div>-->
+    <p class="LContent" id="loaderMessage">
+      <%#= message %>
+    </p>
+  </div>
+</div>
 </body>
 </html>

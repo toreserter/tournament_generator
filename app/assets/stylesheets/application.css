@@ -59,14 +59,11 @@ body {
     border-radius: 0px !important;
 }
 
-#matches {
-    width: 350px;
-}
-
 .match-row {
-    padding: 5px;
-    border: 1px dotted #ccc;
-    font-size: 17px;
+    height: 37px;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    padding-top: 5px;
 }
 
 span.home {
@@ -78,7 +75,7 @@ span.home {
 
 span.score {
     text-align: center;
-    width: 100px;
+    width: 75px;
     /*display: block;*/
     float: left;
 }
@@ -87,6 +84,12 @@ span.away {
     text-align: left;
     width: 115px;
     /*display: block;*/
+    float: left;
+}
+
+span.actions {
+    text-align: right;
+    width: 30px;
     float: left;
 }
 
@@ -99,7 +102,7 @@ input.away {
 }
 
 .score-field {
-    width: 30px !important;
+    width: 20px !important;
     border-bottom-left-radius: 0px !important;
     border-top-left-radius: 0px !important;
     /*float: right !important;*/
@@ -119,13 +122,13 @@ input.away {
     width: 100%;
     height: 100%;
 
-
 }
+
 .ajax-load {
     position: relative;
     top: 45%;
 }
 
-.navbar {
-    border-radius: 0px !important;
+div.match-row:nth-of-type(odd) {
+    background-color: #f9f9f9;
 }

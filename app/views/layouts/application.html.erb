@@ -1,67 +1,105 @@
 <!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
 <html>
 <head>
-  <title>TournamentGenerator</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><%= @page_title %></title>
+
+  <!-- REQUIRED JS SCRIPTS -->
+
+  <!-- jQuery 2.1.4 -->
+  <%= javascript_include_tag 'jQuery-2.1.4.min' %>
+  <!-- Bootstrap 3.3.5 -->
+  <%= javascript_include_tag 'bootstrap.min' %>
+  <!-- AdminLTE App -->
+  <%= javascript_include_tag 'app.min' %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <style type="text/css">
-      /*@font-face {*/
-      /*font-family: 'Glyphicons Halflings';*/
-      /*src: url('/assets/fonts/glyphicons-halflings-regular.eot?v=4.3.0');*/
-      /*src: url('/assets/fonts/glyphicons-halflings-regular.eot?#iefix&v=4.3.0') format('embedded-opentype'), url('/assets/fonts/glyphicons-halflings-regular.woff2?v=4.3.0') format('woff2'), url('/assets/fonts/glyphicons-halflings-regular.woff?v=4.3.0') format('woff'), url('/assets/fonts/glyphicons-halflings-regular.ttf?v=4.3.0') format('truetype'), url('/assets/fonts/glyphicons-halflings-regular.svg?v=4.3.0#fontawesomeregular') format('svg');*/
-      /*font-weight: normal;*/
-      /*font-style: normal;*/
-      /*}*/
-  </style>
-  <%= stylesheet_link_tag 'bootstrap.min' %>
-  <%= stylesheet_link_tag 'bootstrap-theme.min' %>
-  <%= javascript_include_tag 'bootstrap.min' %>
-
+  <%= javascript_include_tag 'jquery_ujs', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'turbolinks', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-</head>
-<body role="document">
-<%= render 'layouts/partials/navbar' %>
-<div class="container">
-  <%= bootstrap_flash %>
-  <%= yield %>
-</div>
-<!--<footer class="footer">-->
-<!--<div class="container">-->
-<!--<p class="text-muted">Place sticky footer content here.</p>-->
-<!--</div>-->
-<!--</footer>-->
-<script type="text/javascript">
-    var loadingContainer;
-    $(function () {
-        // Toggle loading container when ajax call
-        get_loading_container();
-        loadingContainer.ajaxStart(function (e) {
-            show_loading();
-        });
-        loadingContainer.ajaxStop(function (e) {
-            loadingContainer.hide();
-        });
-    });
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.5 -->
+  <%= stylesheet_link_tag 'bootstrap.min' %>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <%= stylesheet_link_tag 'AdminLTE' %>
+  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+        page. However, you can choose any other skin. Make sure you
+        apply the skin class to the body tag so the changes take effect.
+  -->
+  <%= stylesheet_link_tag 'skins/skin-green.min' %>
 
-    $(document).ready(function () {
-        get_loading_container();
-        loadingContainer.hide();
-    });
-    function get_loading_container() {
-        loadingContainer = $('.loader-big');
-    }
-    function show_loading() {
-        loadingContainer.show();
-    }
-</script>
-<div class="loader-big">
-  <div class="load-content text-center">
-    <i class="icon icon-spinner icon-spin icon-4x"></i>
-    <!--<div class="Limg"><img src="<%#= asset_path("admin/v2/ajax-loader-2.gif") %>"></div>-->
-    <p class="LContent" id="loaderMessage">
-      <%#= message %>
-    </p>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="hold-transition skin-green layout-top-nav ">
+<div class="wrapper">
+
+  <!-- Main Header -->
+  <%= render partial: "layouts/shared/header" %>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <div class="container">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          <%= @page_title %>
+          <% if @page_description %>
+              <small><%= @page_description %></small>
+          <% end %>
+        </h1>
+      </section>
+      <!-- Main content -->
+      <section class="content">
+        <%= bootstrap_flash %>
+        <%= yield %>
+      </section>
+      <!-- /.content -->
+    </div>
   </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Main Footer -->
+  <%= render partial: "layouts/shared/footer" %>
+  <script type="text/javascript">
+      var loadingContainer;
+      $(function () {
+          // Toggle loading container when ajax call
+          get_loading_container();
+          loadingContainer.ajaxStart(function (e) {
+              show_loading();
+          });
+          loadingContainer.ajaxStop(function (e) {
+              loadingContainer.hide();
+          });
+      });
+
+      $(document).ready(function () {
+          get_loading_container();
+          loadingContainer.hide();
+      });
+      function get_loading_container() {
+          loadingContainer = $('.loader-big');
+      }
+      function show_loading() {
+          loadingContainer.show();
+      }
+  </script>
 </div>
+<!-- ./wrapper -->
 </body>
 </html>

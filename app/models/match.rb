@@ -1,14 +1,14 @@
 class Match < ActiveRecord::Base
   GOAL_RANGES = {}
-  GOAL_RANGES[0] = (0..25).to_a
-  GOAL_RANGES[1] = (26..50).to_a
+  GOAL_RANGES[0] = (0..23).to_a
+  GOAL_RANGES[1] = (24..50).to_a
   GOAL_RANGES[2] = (51..65).to_a
   GOAL_RANGES[3] = (66..75).to_a
   GOAL_RANGES[4] = (76..85).to_a
-  GOAL_RANGES[4] = (86..92).to_a
-  GOAL_RANGES[5] = (93..96).to_a
-  GOAL_RANGES[6] = (97..98).to_a
-  GOAL_RANGES[7] = [99]
+  GOAL_RANGES[4] = (86..91).to_a
+  GOAL_RANGES[5] = (92..95).to_a
+  GOAL_RANGES[6] = (96..98).to_a
+  GOAL_RANGES[7] = (99..100).to_a
 
   belongs_to :tournament, class_name: "Tournament", :foreign_key => 'tournament_id'
   belongs_to :home_team, class_name: "Player"

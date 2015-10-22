@@ -1,5 +1,5 @@
 class TournamentsController < ApplicationController
-  before_action :set_tournament, only: [:show, :edit, :update, :destroy, :setup, :submit_setup]
+  before_action :set_tournament, only: [:show, :edit, :update, :destroy, :setup, :submit_setup, :simulate]
   before_action :redirect_to_setup, only: [:show, :edit]
   before_action :redirect_to_tournament, only: [:edit, :setup]
 
@@ -11,6 +11,13 @@ class TournamentsController < ApplicationController
   def show
     get_matches
     get_scores
+  end
+
+  def simulate
+    @tournament.simulate_all
+    respond_to do |format|
+      format.js { redirect_to tournament_path(@tournament), notice: 'Tournament simulated.' }
+    end
   end
 
   def setup

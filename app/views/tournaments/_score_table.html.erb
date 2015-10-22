@@ -1,6 +1,9 @@
 <div class="box">
   <div class="box-header">
     <h3 class="box-title">Table</h3>
+    <div class="box-tools pull-right">
+      <%= link_to '<i class="fa fa-play"></i>'.html_safe, simulate_tournament_path(@tournament), :remote => true, :data => {:toggle => "tooltip", :placement => "right"}, :title => 'Simulate all matches', :class => "btn btn-box-tool" %>
+    </div>
   </div>
   <!-- /.box-header -->
   <div class="box-body no-padding">

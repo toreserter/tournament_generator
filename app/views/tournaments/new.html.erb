@@ -1,36 +1,28 @@
-<h2>New Tournament</h2>
-<hr>
 
-<%= form_for(@tournament) do |f| %>
-    <% if @tournament.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@tournament.errors.count, "error") %> prohibited this tournament from being saved:</h2>
+<div class="row">
 
-          <ul>
-            <% @tournament.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
+  <div class="box box-success">
+    <div class="box-header with-border">
+      <h3 class="box-title">New Tournament</h3>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <%= form_for(@tournament) do |f| %>
+        <%= render 'layouts/shared/form_errors', :errors => @tournament.errors %>
+
+        <div class="box-body">
+          <%= f.text_field :name, :class => "form-control input-lg", :placeholder => "Tournament name" %>
+          <br>
+          <%= f.select :tournament_type, options_for_select(Tournament::TYPES), {:prompt => "Tournament type"}, :class => "form-control input-lg" %>
+          <br>
+          <%= f.number_field :number_of_players, :class => "form-control input-lg", :placeholder => "Number of players" %>
+          <br>
         </div>
+      <!-- /.box-body -->
+
+      <div class="box-footer">
+        <%= f.submit "Save", :class => "btn btn-primary" %>
+      </div>
     <% end %>
-
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, :class => "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :tournament_type %>
-      <%= f.select :tournament_type, options_for_select(Tournament::TYPES), {}, :class => "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :number_of_players %>
-      <%= f.number_field :number_of_players, :class => "form-control" %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "Save", :class => "btn btn-default" %>
-    </div>
-<% end %>
-
-<hr>
-<%= link_to 'Back', tournaments_path %>
+  </div>
+</div>

@@ -1,21 +1,25 @@
-
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th>Tournament name</th>
-    <th>Type</th>
-    <th>Players</th>
-    <th>State</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @tournaments.each do |tournament| %>
-      <tr>
-        <td><%= link_to tournament.name, tournament_path(tournament) %></td>
-        <td><%= tournament.tournament_type %></td>
-        <td><%= tournament.players.count %></td>
-        <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+<div class="row">
+  <div class="box">
+    <div class="box-body no-padding">
+      <table class="table table-striped">
+        <tbody>
+        <tr>
+          <th>Tournament name</th>
+          <th>Type</th>
+          <th>Players</th>
+          <th>State</th>
+        </tr>
+        <% @tournaments.each do |tournament| %>
+            <tr>
+              <td><%= link_to tournament.name, tournament_path(tournament) %></td>
+              <td><%= tournament.tournament_type %></td>
+              <td><%= tournament.players.count %></td>
+              <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.box-body -->
+  </div>
+</div>

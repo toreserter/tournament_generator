@@ -5,6 +5,7 @@ class TournamentsController < ApplicationController
 
   def index
     @tournaments = Tournament.all
+    @page_title = "Tournaments"
   end
 
   def show

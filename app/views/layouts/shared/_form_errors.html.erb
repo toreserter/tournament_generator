@@ -1,0 +1,12 @@
+<% if errors.any? %>
+    <div class="alert alert-danger alert-dismissable" style="margin:15px;">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <h4><i class="icon fa fa-ban"></i> <%= pluralize(errors.count, "error") %> prohibited this address from being
+        saved:</h4>
+      <ul>
+        <% errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>

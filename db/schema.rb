@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150908201258) do
     t.integer  "loss",           limit: 4
     t.integer  "goal_scored",    limit: 4
     t.integer  "goal_conceeded", limit: 4
+    t.integer  "average",        limit: 4
   end
 
   add_index "players", ["tournament_id"], name: "index_players_on_tournament_id", using: :btree

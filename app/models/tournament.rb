@@ -1,4 +1,5 @@
 require 'scheduler'
+require 'club_list'
 class Tournament < ActiveRecord::Base
   TYPES = %w(league knockout)
 
@@ -62,7 +63,7 @@ class Tournament < ActiveRecord::Base
   private
   def create_players
     self.number_of_players.to_i.times do
-      i = self.players.new
+      i = self.players.new(name: ClubList::LIST[rand(628)])
       i.save(validate: false)
     end
   end

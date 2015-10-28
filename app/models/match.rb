@@ -2,11 +2,10 @@ class Match < ActiveRecord::Base
   GOAL_RANGES = {}
   GOAL_RANGES[0] = (0..23).to_a
   GOAL_RANGES[1] = (24..50).to_a
-  GOAL_RANGES[2] = (51..65).to_a
-  GOAL_RANGES[3] = (66..75).to_a
-  GOAL_RANGES[4] = (76..85).to_a
-  GOAL_RANGES[4] = (86..91).to_a
-  GOAL_RANGES[5] = (92..95).to_a
+  GOAL_RANGES[2] = (51..70).to_a
+  GOAL_RANGES[3] = (71..82).to_a
+  GOAL_RANGES[4] = (83..90).to_a
+  GOAL_RANGES[5] = (91..95).to_a
   GOAL_RANGES[6] = (96..98).to_a
   GOAL_RANGES[7] = (99..100).to_a
 
@@ -35,6 +34,7 @@ class Match < ActiveRecord::Base
       self.home_team_score = i if GOAL_RANGES[i].member?(hor_num)
       self.away_team_score = i if GOAL_RANGES[i].member?(awr_num)
     end
+
     self.save!
   end
 

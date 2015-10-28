@@ -30,16 +30,16 @@ ActiveRecord::Schema.define(version: 20151028145929) do
     t.string   "name",           limit: 255
     t.string   "team",           limit: 255
     t.integer  "tournament_id",  limit: 4
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "played",         limit: 4
-    t.integer  "score",          limit: 4
-    t.integer  "win",            limit: 4
-    t.integer  "draw",           limit: 4
-    t.integer  "loss",           limit: 4
-    t.integer  "goal_scored",    limit: 4
-    t.integer  "goal_conceeded", limit: 4
-    t.integer  "average",        limit: 4
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.integer  "played",         limit: 4,   default: 0
+    t.integer  "score",          limit: 4,   default: 0
+    t.integer  "win",            limit: 4,   default: 0
+    t.integer  "draw",           limit: 4,   default: 0
+    t.integer  "loss",           limit: 4,   default: 0
+    t.integer  "goal_scored",    limit: 4,   default: 0
+    t.integer  "goal_conceeded", limit: 4,   default: 0
+    t.integer  "average",        limit: 4,   default: 0
   end
 
   add_index "players", ["tournament_id"], name: "index_players_on_tournament_id", using: :btree

@@ -27,11 +27,6 @@ class TournamentsController < ApplicationController
 
   def new
     @tournament = Tournament.new
-    # if params[:number_of_players]
-    #   params[:number_of_players].to_i.times do
-    #     @tournament.players.build
-    #   end
-    # end
   end
 
   def edit
@@ -91,7 +86,7 @@ class TournamentsController < ApplicationController
   end
 
   def get_matches
-    @matches = @tournament.matches
+    @matches = @tournament.matches.group_by { |m| m.round }
   end
 
   private

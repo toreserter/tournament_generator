@@ -16,7 +16,9 @@ class Match < ActiveRecord::Base
 
   validate :same_team_validation
   after_update :set_player_datum
-  validates :home_team_score, :away_team_score, numericality: { greater_than_or_equal_to: 0, allow_nil: true}
+  validates :home_team_score, :away_team_score, numericality: {greater_than_or_equal_to: 0, allow_nil: true}
+
+  default_scope { order('round ASC') }
 
   def self.completed
     where("home_team_score IS NOT NULL AND away_team_score IS NOT NULL")
@@ -34,6 +36,10 @@ class Match < ActiveRecord::Base
       self.away_team_score = i if GOAL_RANGES[i].member?(awr_num)
     end
     self.save!
+  end
+
+  def not_played?
+    home_team_score.nil? || away_team_score.nil?
   end
 
   private

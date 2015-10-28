@@ -130,3 +130,13 @@ input.away {
 div.match-row:nth-of-type(odd) {
     background-color: #f9f9f9;
 }
+
+.round-title {
+    font-size: 14px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.round-panel {
+    margin-bottom: 0 !important;
+}

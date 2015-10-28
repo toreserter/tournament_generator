@@ -8,11 +8,13 @@
     <% @matches.each do |round, matches| %>
         <div class="panel box box-primary round-panel">
           <div class="box-header with-border">
-            <h5 class="round-title">
+
               <a data-toggle="collapse" data-parent="#accordion" href="#week<%= round %>">
+                <h5 class="round-title">
                 Round #<%= round %>
+                </h5>
               </a>
-            </h5>
+
             <% unless matches.any? { |m| m.not_played? } %>
                 <div class="box-tools pull-right">
                   <i class="icon fa fa-check text-green"></i>

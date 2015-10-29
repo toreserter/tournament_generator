@@ -34,14 +34,23 @@ function enable_autosave(form) {
 }
 
 function auto_submit_this(el) {
-    clearTimeout(autosave_timeout);
-    autosave_timeout = setTimeout(function () {
-        //SHOW_LOADING = false;
-        loadingContainer.show();
-        if (el.submit())
-            setTimeout(function () {
-                loadingContainer.hide();
-                //SHOW_LOADING = true;
-            }, 500);
-    }, 1);
+    can_submit = true;
+    rel = el.attr('rel');
+    $.each( $("input[rel=" + rel + "]"), function( key, value ) {
+        if ($(this).val() == "") {
+            can_submit = false;
+        }
+    });
+    if(can_submit){
+        clearTimeout(autosave_timeout);
+        autosave_timeout = setTimeout(function () {
+            //SHOW_LOADING = false;
+            loadingContainer.show();
+            if (el.submit())
+                setTimeout(function () {
+                    loadingContainer.hide();
+                    //SHOW_LOADING = true;
+                }, 500);
+        }, 1);
+    }
 }

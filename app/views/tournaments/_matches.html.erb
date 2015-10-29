@@ -38,7 +38,7 @@
                 </span>
                       <span class="away"><%= match.away_team.name %></span>
               <span class="actions">
-                <%= link_to '<i class="fa fa-fw fa-play"></i>'.html_safe, simulate_tournament_match_path(@tournament, match), :remote => true, :data => {:toggle => "tooltip", :placement => "right"}, :title => 'Simulate match' %>
+                <%= link_to '<i class="fa fa-fw fa-play"></i>'.html_safe, simulate_tournament_match_path(@tournament, match), :remote => true, :data => {:toggle => "tooltip", :placement => "right"}, :title => 'Simulate match', :onclick => "loadingContainer.show()" %>
               </span>
                   <% end %>
                 </div>

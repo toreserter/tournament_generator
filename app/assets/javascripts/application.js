@@ -21,7 +21,6 @@ $(function () {
 function enable_autosave(form) {
     if (form != undefined) {
         form.find('input, textarea, select').on('change', function () {
-
             auto_submit_this($(this));
         });
     }
@@ -48,7 +47,7 @@ function auto_submit_this(el) {
             loadingContainer.show();
             if (el.submit())
                 setTimeout(function () {
-                    loadingContainer.hide();
+                    //loadingContainer.hide();
                     //SHOW_LOADING = true;
                 }, 500);
         }, 1);

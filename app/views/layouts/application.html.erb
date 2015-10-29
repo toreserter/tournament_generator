@@ -48,7 +48,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <body class="hold-transition skin-green layout-top-nav ">
 <div class="wrapper">
-
+  <div class="loading-container">
+    <div class="spinner">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+      <div class="rect5"></div>
+    </div>
+  </div>
   <!-- Main Header -->
   <%= render partial: "layouts/shared/header" %>
   <!-- Content Wrapper. Contains page content -->
@@ -72,7 +80,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
   </div>
   <!-- /.content-wrapper -->
-
   <!-- Main Footer -->
   <%= render partial: "layouts/shared/footer" %>
   <script type="text/javascript">
@@ -93,7 +100,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           loadingContainer.hide();
       });
       function get_loading_container() {
-          loadingContainer = $('.loader-big');
+          loadingContainer = $('.loading-container');
       }
       function show_loading() {
           loadingContainer.show();

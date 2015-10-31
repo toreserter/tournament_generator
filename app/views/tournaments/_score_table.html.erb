@@ -1,5 +1,5 @@
 <%= render 'tournaments/widgets/tournament_details' %>
-<% if @tournament.rules[:grouped] %>
+<% if @tournament.rules[:grouped] == "true" %>
     <% @tournament.get_groups.each do |gr| %>
         <div class="box box-warning">
           <div class="box-header">

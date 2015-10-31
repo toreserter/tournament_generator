@@ -26,7 +26,7 @@ class Tournament < ActiveRecord::Base
 
   def set_fixture
     if tournament_type == "league"
-      if self.rules[:grouped]
+      if self.rules[:grouped] == "true"
         self.set_groups
         teams = []
         self.get_groups.each do |gr|
@@ -52,7 +52,7 @@ class Tournament < ActiveRecord::Base
         round.each do |rr|
           rr.games.each do |game|
             unless [game.team_a, game.team_b].include?(:dummy)
-              self.matches.create(home_team_id: game.team_a, away_team_id: game.team_b, round: rr.round_with_cycle, group: (self.rules[:grouped] ? Player.find(game.team_a).group : nil))
+              self.matches.create(home_team_id: game.team_a, away_team_id: game.team_b, round: rr.round_with_cycle, group: ((self.rules[:grouped] == "true") ? Player.find(game.team_a).group : nil))
             end
           end
         end
@@ -75,9 +75,13 @@ class Tournament < ActiveRecord::Base
 
   protected
   def create_players
-    self.number_of_players.to_i.times do
-      i = self.players.new(name: ClubList::LIST[rand(628)])
+    rnd_numbers_arr = (1..312).to_a.sample(self.number_of_players.to_i)
+    0.upto(self.number_of_players.to_i - 1) do |loop_index|
+      i = self.players.new(name: ClubList::LIST[rnd_numbers_arr[loop_index]])
       i.save(validate: false)
+    end
+    self.number_of_players.to_i.times do
+
     end
   end
 

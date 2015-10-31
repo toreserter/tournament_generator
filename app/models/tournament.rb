@@ -2,7 +2,7 @@ require 'scheduler'
 require 'club_list'
 class Tournament < ActiveRecord::Base
   TYPES = %w(league knockout)
-
+  RULE_SETS = {league: ['cycle']}
   attr_accessor :number_of_players
   has_many :players, dependent: :destroy
   has_many :matches, dependent: :destroy
@@ -11,6 +11,8 @@ class Tournament < ActiveRecord::Base
   after_create :create_players
   before_create :set_state
   validates :name, :tournament_type, :presence => true
+
+  serialize :rules
 
   def in_setup?
     self.state == "in_setup"
@@ -46,7 +48,7 @@ class Tournament < ActiveRecord::Base
       schedule.rounds.each do |round|
         round.each do |rr|
           rr.games.each do |game|
-            unless [game.team_a,game.team_b].include?(:dummy)
+            unless [game.team_a, game.team_b].include?(:dummy)
               self.matches.create(home_team_id: game.team_a, away_team_id: game.team_b, round: rr.round_with_cycle)
             end
           end

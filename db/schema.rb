@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028145929) do
+ActiveRecord::Schema.define(version: 20151029163915) do
 
   create_table "matches", force: :cascade do |t|
     t.integer  "home_team_score", limit: 4
@@ -47,9 +47,10 @@ ActiveRecord::Schema.define(version: 20151028145929) do
   create_table "tournaments", force: :cascade do |t|
     t.string   "name",            limit: 255
     t.string   "tournament_type", limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "state",           limit: 255
+    t.text     "rules",           limit: 65535
   end
 
 end

@@ -9,10 +9,18 @@
         <%= render 'layouts/shared/form_errors', :errors => @tournament.errors %>
 
         <div class="box-body">
-          <%= f.fields_for :players do |p| %>
-              <%= p.text_field :name, :class => "form-control input-lg", :placeholder => "Player #{ p.index + 1 }" %>
-              <br>
-          <% end %>
+          <div class="row">
+            <div class="col-md-6">
+              <%= render "tournaments/rules/#{@tournament.tournament_type}", f: f %>
+            </div>
+            <div class="col-md-6">
+              <%= label_tag "players", "Players" %>
+              <%= f.fields_for :players do |p| %>
+                  <%= p.text_field :name, :class => "form-control input-md", :placeholder => "Player #{ p.index + 1 }" %>
+                  <br>
+              <% end %>
+            </div>
+          </div>
         </div>
         <!-- /.box-body -->
 

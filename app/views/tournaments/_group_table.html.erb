@@ -1,0 +1,32 @@
+<div class="box-body no-padding">
+  <table class="table table-striped">
+    <tbody>
+    <tr>
+      <th style="width: 10px">#</th>
+      <th>Takım</th>
+      <th>O</th>
+      <th>G</th>
+      <th>B</th>
+      <th>M</th>
+      <th>A</th>
+      <th>Y</th>
+      <th>Av</th>
+      <th>Puan</th>
+    </tr>
+    <% players.each_with_index do |team, i| %>
+        <tr>
+          <th scope="row"><%= i + 1 %></th>
+          <td><%= team.name %></td>
+          <td><%= team.played %></td>
+          <td><%= team.win %></td>
+          <td><%= team.draw %></td>
+          <td><%= team.loss %></td>
+          <td><%= team.goal_scored %></td>
+          <td><%= team.goal_conceeded %></td>
+          <td><%= team.average %></td>
+          <td><b><%= team.score %></b></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

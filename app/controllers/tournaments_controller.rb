@@ -97,7 +97,7 @@ class TournamentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def tournament_params
-    params.require(:tournament).permit(:name, :tournament_type, :number_of_players, players_attributes: [:name, :team, :id])
+    params.require(:tournament).permit(:name, :tournament_type, :number_of_players, :cycle, :grouped, :group_count, players_attributes: [:name, :team, :id])
   end
 
   def redirect_to_setup

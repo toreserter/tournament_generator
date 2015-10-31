@@ -1,0 +1,14 @@
+<div class="info-box bg-aqua">
+  <span class="info-box-icon"><i class="fa fa-soccer-ball-o"></i></span>
+  <div class="info-box-content">
+    <span class="info-box-text">Matches</span>
+    <span class="info-box-number"><%= @tournament.matches.count %></span>
+    <div class="progress">
+      <div class="progress-bar" style="width: <%= @tournament.completed_ratio %>%"></div>
+    </div>
+                  <span class="progress-description">
+                    <%= @tournament.completed_ratio %>% of matches complete
+                  </span>
+  </div>
+  <!-- /.info-box-content -->
+</div>

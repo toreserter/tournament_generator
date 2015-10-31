@@ -1,0 +1,16 @@
+<div class="info-box bg-yellow">
+  <span class="info-box-icon"><i class="fa fa-trophy"></i></span>
+  <div class="info-box-content">
+    <span class="info-box-text"><%= @tournament.name %></span>
+    <span class="info-box-number">Created on <%= @tournament.created_at.to_s(:long) %></span>
+
+    <div class="progress">
+      <div class="progress-bar" style="width: 100%"></div>
+    </div>
+                  <!--<span class="progress-description">-->
+                    <!--<div class="box-tools ">-->
+                      <%= link_to '<i class="fa fa-play"></i>'.html_safe, simulate_tournament_path(@tournament), :remote => true, :data => {:toggle => "tooltip", :placement => "right"}, :title => 'Simulate all matches', :class => "white", :onclick => "loadingContainer.show()" %>
+                    <!--</div>-->
+                  <!--</span>-->
+  </div><!-- /.info-box-content -->
+</div>

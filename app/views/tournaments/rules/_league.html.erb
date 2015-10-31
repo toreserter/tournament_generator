@@ -1,0 +1,14 @@
+<div class="form-group">
+  <%= f.label :cycle, "Number of matches against each team" %>
+  <%= f.number_field :cycle, :class => "form-control" %>
+</div>
+<div class="checkbox">
+  <%= f.label :grouped do %>
+      <%= f.check_box :grouped %> <b>Grouped?</b>
+  <% end %>
+</div>
+
+<div class="form-group">
+  <%= f.label :group_count, "Number of groups" %>
+  <%= f.number_field :group_count, :class => "form-control" %>
+</div>

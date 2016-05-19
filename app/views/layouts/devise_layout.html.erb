@@ -44,64 +44,13 @@
 
 <body class="hold-transition skin-green layout-top-nav ">
 <div class="wrapper">
-  <div class="loading-container">
-    <div class="spinner">
-      <div class="rect1"></div>
-      <div class="rect2"></div>
-      <div class="rect3"></div>
-      <div class="rect4"></div>
-      <div class="rect5"></div>
-    </div>
-  </div>
   <!-- Main Header -->
   <%= render partial: "layouts/shared/header" %>
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <div class="container">
-      <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <h1>
-          <%= @page_title %>
-          <% if @page_description %>
-              <small><%= @page_description %></small>
-          <% end %>
-        </h1>
-      </section>
-      <!-- Main content -->
-      <section class="content">
+  <div class="register-box">
         <%= bootstrap_flash %>
         <%= yield %>
-      </section>
-      <!-- /.content -->
-    </div>
   </div>
-  <!-- /.content-wrapper -->
-  <!-- Main Footer -->
-  <%#= render partial: "layouts/shared/footer" %>
-  <script type="text/javascript">
-      var loadingContainer;
-      $(function () {
-          // Toggle loading container when ajax call
-          get_loading_container();
-          loadingContainer.ajaxStart(function (e) {
-              show_loading();
-          });
-          loadingContainer.ajaxStop(function (e) {
-              loadingContainer.hide();
-          });
-      });
-
-      $(document).ready(function () {
-          get_loading_container();
-          loadingContainer.hide();
-      });
-      function get_loading_container() {
-          loadingContainer = $('.loading-container');
-      }
-      function show_loading() {
-          loadingContainer.show();
-      }
-  </script>
 </div>
 <!-- ./wrapper -->
 </body>

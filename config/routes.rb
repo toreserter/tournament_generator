@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  devise_for :users
   resources :tournaments do
     resources :matches do
       get :simulate, :on => :member

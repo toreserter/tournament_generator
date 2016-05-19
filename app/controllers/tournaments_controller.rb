@@ -1,4 +1,5 @@
 class TournamentsController < ApplicationController
+  before_action :authenticate_user!, :except => [:index, :show]
   before_action :set_tournament, only: [:show, :edit, :update, :destroy, :setup, :submit_setup, :simulate]
   before_action :redirect_to_setup, only: [:show, :edit]
   before_action :redirect_to_tournament, only: [:edit, :setup]

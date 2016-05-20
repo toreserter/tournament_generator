@@ -5,7 +5,7 @@ class TournamentsController < ApplicationController
   before_action :redirect_to_tournament, only: [:edit, :setup]
 
   def index
-    @tournaments = Tournament.all
+    @tournaments = Tournament.only_public
     @page_title = "Tournaments"
   end
 
@@ -27,17 +27,18 @@ class TournamentsController < ApplicationController
   end
 
   def new
-    @tournament = Tournament.new
+    @tournament = current_user.tournaments.new
   end
 
   def edit
   end
 
   def create
-    @tournament = Tournament.new(tournament_params)
+    @tournament = current_user.tournaments.new(tournament_params)
 
     respond_to do |format|
       if @tournament.save
+        @tournament.users << current_user
         format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }
         format.json { render :show, status: :created, location: @tournament }
       else
@@ -98,7 +99,7 @@ class TournamentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def tournament_params
-    params.require(:tournament).permit(:name, :tournament_type, :number_of_players, :cycle, :grouped, :group_count, players_attributes: [:name, :team, :id])
+    params.require(:tournament).permit(:name, :tournament_type, :number_of_players, :cycle, :private, :grouped, :group_count, players_attributes: [:name, :team, :id])
   end
 
   def redirect_to_setup

@@ -66,22 +66,24 @@ body {
 
 span.home {
     text-align: right;
+    min-width: 100px;
     width: 115px;
-    /*display: block;*/
+    display: block;
     float: left;
 }
 
 span.score {
     text-align: center;
-    width: 75px;
-    /*display: block;*/
+    width: 50px;
+    display: block;
     float: left;
 }
 
 span.away {
     text-align: left;
+    min-width: 100px;
     width: 115px;
-    /*display: block;*/
+    display: block;
     float: left;
 }
 

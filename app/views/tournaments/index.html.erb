@@ -5,6 +5,7 @@
         <tbody>
         <tr>
           <th>Tournament name</th>
+          <th>State</th>
           <th>Type</th>
           <th>Players</th>
           <th>State</th>
@@ -12,6 +13,7 @@
         <% @tournaments.each do |tournament| %>
             <tr>
               <td><%= link_to tournament.name, tournament_path(tournament) %></td>
+              <td><%= state_label(tournament) %></td>
               <td><%= tournament.tournament_type %></td>
               <td><%= tournament.players.count %></td>
               <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>

@@ -9,12 +9,18 @@ class Tournament < ActiveRecord::Base
   has_many :matches, dependent: :destroy
   accepts_nested_attributes_for :players
 
+  has_many :user_tournaments
+  has_many :users, through: :user_tournaments
+
   after_create :create_players
   before_create :set_state
   before_save :set_rules
   validates :name, :tournament_type, :presence => true
 
   serialize :rules
+
+  scope :only_private, -> { where(is_private: true) }
+  scope :only_public, -> { where(is_private: false) }
 
   def in_setup?
     self.state == "in_setup"

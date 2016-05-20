@@ -1,4 +1,3 @@
-
 <div class="row">
 
   <div class="box box-success">
@@ -17,12 +16,14 @@
           <br>
           <%= f.number_field :number_of_players, :class => "form-control input-lg", :placeholder => "Number of players" %>
           <br>
+          <%= f.select :is_private, options_for_select([['Public', false], ['Private', true]]), {}, :class => "form-control input-lg" %>
+          <br>
         </div>
-      <!-- /.box-body -->
+        <!-- /.box-body -->
 
-      <div class="box-footer">
-        <%= f.submit "Save", :class => "btn btn-primary" %>
-      </div>
+        <div class="box-footer">
+          <%= f.submit "Save", :class => "btn btn-primary" %>
+        </div>
     <% end %>
   </div>
 </div>

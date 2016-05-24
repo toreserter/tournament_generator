@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
 
-  before_action :set_tournament, only: [:show, :edit, :update, :destroy, :setup, :submit_setup, :simulate]
+  before_action :set_tournament, only: [:show, :edit, :update, :destroy, :setup, :submit_setup, :simulate, :users]
   before_action :redirect_to_setup, only: [:show, :edit]
   before_action :redirect_to_tournament, only: [:edit, :setup]
 
@@ -21,6 +21,12 @@ class TournamentsController < ApplicationController
   def show
     get_matches
     get_scores
+  end
+
+  def users
+    @users_tournaments = @tournament.user_tournaments
+    @page_title = "Tournament Users"
+
   end
 
   def simulate

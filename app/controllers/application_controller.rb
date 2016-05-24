@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   layout :layout_by_resource
+  include PublicActivity::StoreController
 
   def render_default_modal_form(title = nil, target = nil, options = {})
     @title = title

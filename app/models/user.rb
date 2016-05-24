@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  include PublicActivity::Model
+  tracked
 
   has_many :user_tournaments
   has_many :tournaments, through: :user_tournaments

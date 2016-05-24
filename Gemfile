@@ -25,6 +25,7 @@ gem 'devise'
 gem 'ransack'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
+gem 'public_activity'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

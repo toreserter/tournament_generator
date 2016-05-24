@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :tournaments do
     get :public, :on => :collection
+    get :users, :on => :member
     resources :matches do
       get :simulate, :on => :member
     end

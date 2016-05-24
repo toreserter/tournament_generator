@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="box">
+    <div class="box-body no-padding">
+      <table class="table table-striped">
+        <tbody>
+        <tr>
+          <th>Name</th>
+          <th>E-mail</th>
+          <th>Permission</th>
+        </tr>
+        <% @users_tournaments.each do |user_tournament| %>
+            <tr>
+              <td><%= user_tournament.user.full_name %></td>
+              <td><%= user_tournament.user.full_name %></td>
+              <td><%= user_tournament.role.capitalize %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.box-body -->
+  </div>
+</div>

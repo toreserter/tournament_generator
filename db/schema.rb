@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519120519) do
+ActiveRecord::Schema.define(version: 20160524115632) do
 
   create_table "matches", force: :cascade do |t|
     t.integer  "home_team_score", limit: 4
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20160519120519) do
     t.datetime "updated_at",                                    null: false
     t.string   "state",           limit: 255
     t.text     "rules",           limit: 65535
-    t.boolean  "private",         limit: 1,     default: false
+    t.boolean  "is_private",      limit: 1,     default: false
   end
 
   create_table "user_tournaments", force: :cascade do |t|
@@ -80,6 +80,8 @@ ActiveRecord::Schema.define(version: 20160519120519) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.string   "firstname",              limit: 255
+    t.string   "lastname",               limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

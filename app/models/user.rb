@@ -7,4 +7,12 @@ class User < ActiveRecord::Base
 
   has_many :user_tournaments
   has_many :tournaments, through: :user_tournaments
+
+  def full_name
+    if firstname.blank? && lastname.blank?
+      email
+    else
+      "#{firstname} #{lastname}"
+    end
+  end
 end

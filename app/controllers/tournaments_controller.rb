@@ -1,5 +1,5 @@
 class TournamentsController < ApplicationController
-  before_action :authenticate_user!, :except => [:index, :show]
+
   before_action :set_tournament, only: [:show, :edit, :update, :destroy, :setup, :submit_setup, :simulate]
   before_action :redirect_to_setup, only: [:show, :edit]
   before_action :redirect_to_tournament, only: [:edit, :setup]
@@ -27,18 +27,18 @@ class TournamentsController < ApplicationController
   end
 
   def new
-    @tournament = current_user.tournaments.new
+    @tournament = current_or_guest_user.tournaments.new
   end
 
   def edit
   end
 
   def create
-    @tournament = current_user.tournaments.new(tournament_params)
+    @tournament = current_or_guest_user.tournaments.new(tournament_params)
 
     respond_to do |format|
       if @tournament.save
-        @tournament.users << current_user
+        @tournament.users << current_or_guest_user
         format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }
         format.json { render :show, status: :created, location: @tournament }
       else

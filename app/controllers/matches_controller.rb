@@ -1,5 +1,4 @@
 class MatchesController < ApplicationController
-  before_action :authenticate_user!
 
   before_action :set_tournament
   before_action :set_match

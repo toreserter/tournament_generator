@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
+  devise_for :users, controllers: {
+      sessions: 'users/sessions',
+      registrations: 'users/registrations'
+  }, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout', sign_up: 'signup' }
 
-  devise_for :users
   resources :tournaments do
     resources :matches do
       get :simulate, :on => :member

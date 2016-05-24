@@ -5,8 +5,17 @@ class TournamentsController < ApplicationController
   before_action :redirect_to_tournament, only: [:edit, :setup]
 
   def index
-    @tournaments = Tournament.only_public
-    @page_title = "Tournaments"
+    @q = current_or_guest_user.tournaments.ransack(params[:q])
+    @tournaments = @q.result.page(params[:page]).per(15)
+    @page_title = "My Tournaments"
+  end
+
+  def public
+    @q = Tournament.only_public.ransack(params[:q])
+    @tournaments = @q.result.page(params[:page]).per(15)
+
+    @page_title = "Public Tournaments"
+    render :index
   end
 
   def show

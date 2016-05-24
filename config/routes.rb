@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   }, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout', sign_up: 'signup' }
 
   resources :tournaments do
+    get :public, :on => :collection
     resources :matches do
       get :simulate, :on => :member
     end

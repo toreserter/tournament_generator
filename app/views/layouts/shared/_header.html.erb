@@ -29,6 +29,7 @@
                 <!-- Menu Toggle Button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <!-- The user image in the navbar-->
+                  <%= image_tag avatar_url current_user, :size => '22' %>
                   <!-- <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
                   <span class="hidden-xs"><%= current_user.full_name %></span>
@@ -36,6 +37,7 @@
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
                   <li class="user-header">
+                    <%= image_tag avatar_url current_user, :size => '60' %>
                     <!-- <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"> -->
                     <p>
                       <%= current_user.full_name %>

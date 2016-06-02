@@ -109,7 +109,12 @@ class TournamentsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_tournament
-    @tournament = Tournament.find(params[:id])
+    begin
+      @tournament = current_or_guest_user.tournaments.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:error] = "Not Authorized"
+      redirect_to tournaments_path and return
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
